@@ -1,0 +1,1589 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
+  <title>FansBuy spreadsheet – find, mål og QC | HipoBuyFind</title>
+  <meta name="description" content="Brug FansBuy spreadsheet som udgangspunkt for sneakers, tøj og tilbehør. Få danske råd om produktlinks, størrelser, QC-billeder og dit samlede budget.">
+  <meta name="robots" content="index,follow,max-image-preview:large">
+  <meta name="theme-color" content="#142c49">
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="da_DK">
+  <meta property="og:site_name" content="HipoBuyFind">
+  <meta property="og:title" content="FansBuy spreadsheet – færre gæt, bedre overblik">
+  <meta property="og:description" content="En uafhængig dansk guide til produktlinks, pasform, billedkontrol og planlægning af dit køb.">
+  <meta name="twitter:card" content="summary">
+  <meta name="color-scheme" content="light">
+  <link rel="preconnect" href="https://static.nike.com" crossorigin>
+  <style>
+    :root {
+      --navy: #142c49;
+      --ink: #182738;
+      --muted: #526170;
+      --paper: #f7f9fb;
+      --white: #fff;
+      --lemon: #e5f56a;
+      --line: #d7dfe7;
+      --blue: #e9f0f7;
+      --radius: 14px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.65;
+    }
+
+    a {
+      color: inherit;
+      text-underline-offset: 4px;
+    }
+
+    a:focus-visible,
+    summary:focus-visible {
+      outline: 3px solid #577900;
+      outline-offset: 5px;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
+    }
+
+    h1,
+    h2,
+    h3,
+    p,
+    figure {
+      margin: 0;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.12;
+      letter-spacing: -.035em;
+    }
+
+    h2 {
+      font-size: clamp(1.8rem, 3.2vw, 2.7rem);
+    }
+
+    h3 {
+      font-size: 1.25rem;
+    }
+
+    p + p {
+      margin-top: 15px;
+    }
+
+    .wrap {
+      width: min(1200px, calc(100% - 48px));
+      margin-inline: auto;
+    }
+
+    .eyebrow {
+      font-size: .72rem;
+      font-weight: 750;
+      letter-spacing: .13em;
+      text-transform: uppercase;
+    }
+
+    .masthead {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding-block: 23px;
+    }
+
+    .brand {
+      font-size: 1.1rem;
+      font-weight: 850;
+      letter-spacing: -.045em;
+      text-decoration: none;
+    }
+
+    .brand b {
+      color: #627300;
+    }
+
+    .header-note {
+      font-size: .8rem;
+      color: var(--muted);
+    }
+
+    .header-link {
+      font-size: .83rem;
+      font-weight: 700;
+    }
+
+    .directory {
+      background: var(--white);
+      border-block: 1px solid var(--line);
+      padding: 21px 0 24px;
+    }
+
+    .directory-title {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      margin-bottom: 15px;
+    }
+
+    .directory-title h2 {
+      font-size: .88rem;
+      letter-spacing: 0;
+    }
+
+    .directory-title p {
+      font-size: .76rem;
+      color: var(--muted);
+    }
+
+    .category-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 9px;
+    }
+
+    .category-grid a {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      min-height: 67px;
+      border: 1px solid var(--line);
+      border-radius: 7px;
+      padding: 11px 13px;
+      text-decoration: none;
+      overflow-wrap: anywhere;
+    }
+
+    .category-grid a:hover {
+      background: var(--lemon);
+      border-color: var(--navy);
+    }
+
+    .category-grid span {
+      font-size: .84rem;
+      font-weight: 700;
+    }
+
+    .category-grid small {
+      font-size: .71rem;
+      color: var(--muted);
+    }
+
+    .hero {
+      background: var(--navy);
+      color: white;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 56px;
+      align-items: center;
+      padding-block: 54px;
+    }
+
+    .hero .eyebrow {
+      color: var(--lemon);
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(2.8rem, 5.6vw, 5rem);
+      max-width: 13ch;
+      font-weight: 850;
+    }
+
+    h1 span {
+      display: block;
+      color: var(--lemon);
+      font-size: .66em;
+      margin-top: 16px;
+      letter-spacing: -.03em;
+    }
+
+    .hero-copy {
+      max-width: 54ch;
+      color: #d7e2ed;
+      margin-top: 25px;
+      font-size: 1.02rem;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 12px 21px;
+      background: var(--lemon);
+      color: var(--navy);
+      border-radius: 6px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: .9rem;
+    }
+
+    .button:hover {
+      background: #f0ff91;
+    }
+
+    .hero .button {
+      margin-top: 27px;
+    }
+
+    .hero-figure {
+      background: #f4f4f4;
+      border-radius: var(--radius);
+      overflow: hidden;
+      color: var(--ink);
+    }
+
+    .hero-figure img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: contain;
+    }
+
+    .hero-figure figcaption {
+      padding: 14px 18px;
+      background: white;
+      border-top: 1px solid var(--line);
+      font-size: .76rem;
+      color: var(--muted);
+    }
+
+    .hero-figure strong {
+      display: block;
+      color: var(--navy);
+      font-size: .87rem;
+      margin-bottom: 3px;
+    }
+
+    .quick-answer {
+      display: grid;
+      grid-template-columns: 210px 1fr;
+      gap: 30px;
+      padding: 29px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .quick-answer h2 {
+      font-size: 1.12rem;
+    }
+
+    .quick-answer p {
+      max-width: 86ch;
+      font-size: .94rem;
+    }
+
+    .section {
+      padding-block: 58px;
+    }
+
+    .section-top {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 40px;
+      margin-bottom: 27px;
+    }
+
+    .section-top .eyebrow {
+      color: #586c00;
+      margin-bottom: 12px;
+    }
+
+    .section-top > p {
+      font-size: .9rem;
+      max-width: 45ch;
+      color: var(--muted);
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .gallery figure {
+      min-width: 0;
+    }
+
+    .image-box {
+      background: #eee;
+      border-radius: 9px;
+      overflow: hidden;
+    }
+
+    .gallery img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: contain;
+      background: #eee;
+    }
+
+    .gallery figcaption {
+      padding-top: 13px;
+      font-size: .8rem;
+      color: var(--muted);
+    }
+
+    .gallery strong {
+      display: block;
+      font-size: .93rem;
+      color: var(--navy);
+      margin-bottom: 6px;
+    }
+
+    .image-note {
+      font-size: .76rem;
+      color: var(--muted);
+      margin-top: 22px;
+      max-width: 100ch;
+    }
+
+    .reading {
+      background: var(--white);
+      border-block: 1px solid var(--line);
+    }
+
+    .reading-layout {
+      display: grid;
+      grid-template-columns: 230px 1fr;
+      gap: 60px;
+    }
+
+    .reading-aside {
+      padding-top: 4px;
+    }
+
+    .reading-aside p {
+      font-size: .87rem;
+      color: var(--muted);
+      margin-top: 18px;
+    }
+
+    .reading-aside .eyebrow {
+      color: #586c00;
+      margin-bottom: 14px;
+    }
+
+    .reading-aside h2 {
+      font-size: 2rem;
+    }
+
+    .articles article {
+      padding-block: 33px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .articles article:first-child {
+      padding-top: 0;
+    }
+
+    .articles article:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .article-label {
+      font-size: .72rem;
+      font-weight: 750;
+      color: var(--muted);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .articles h3 {
+      font-size: 1.8rem;
+      margin-bottom: 18px;
+    }
+
+    .articles p {
+      font-size: .95rem;
+      max-width: 77ch;
+    }
+
+    .articles .standfirst {
+      font-size: 1.06rem;
+      color: var(--navy);
+      font-weight: 550;
+    }
+
+    .articles ul {
+      padding-left: 21px;
+      font-size: .92rem;
+      margin: 17px 0;
+    }
+
+    .articles li + li {
+      margin-top: 8px;
+    }
+
+    .callout {
+      background: var(--blue);
+      border-left: 4px solid var(--navy);
+      padding: 19px 21px;
+      margin-top: 22px;
+      font-size: .89rem;
+    }
+
+    .callout strong {
+      display: block;
+      margin-bottom: 7px;
+    }
+
+    .cost-line {
+      font-weight: 750;
+      color: var(--navy);
+    }
+
+    .matrix {
+      margin-top: 27px;
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      text-align: left;
+      font-size: .86rem;
+      min-width: 560px;
+    }
+
+    caption {
+      text-align: left;
+      padding: 16px;
+      font-weight: 750;
+      background: var(--blue);
+    }
+
+    th,
+    td {
+      padding: 13px 16px;
+      vertical-align: top;
+      border-top: 1px solid var(--line);
+    }
+
+    thead th {
+      background: #f4f6f8;
+      font-size: .75rem;
+    }
+
+    tbody th {
+      font-weight: 650;
+      width: 23%;
+    }
+
+    td {
+      color: var(--muted);
+    }
+
+    .faq {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 60px;
+    }
+
+    .faq-intro p {
+      font-size: .9rem;
+      color: var(--muted);
+      margin-top: 18px;
+    }
+
+    .faq-intro .eyebrow {
+      margin-bottom: 14px;
+      color: #586c00;
+    }
+
+    details {
+      border-top: 1px solid var(--line);
+      padding: 20px 0;
+    }
+
+    details:last-child {
+      border-bottom: 1px solid var(--line);
+    }
+
+    summary {
+      cursor: pointer;
+      font-size: 1rem;
+      font-weight: 750;
+      padding-right: 12px;
+    }
+
+    details p {
+      margin-top: 14px;
+      font-size: .92rem;
+      color: var(--muted);
+      max-width: 72ch;
+    }
+
+    .finish {
+      background: var(--lemon);
+    }
+
+    .finish-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 35px;
+      padding-block: 33px;
+    }
+
+    .finish h2 {
+      font-size: 1.7rem;
+    }
+
+    .finish p {
+      font-size: .88rem;
+      margin-top: 10px;
+      max-width: 65ch;
+    }
+
+    .finish .button {
+      background: var(--navy);
+      color: white;
+      flex-shrink: 0;
+    }
+
+    footer {
+      padding-block: 30px;
+      color: var(--muted);
+      font-size: .76rem;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 14px;
+    }
+
+    .footer-top a {
+      font-weight: 800;
+      color: var(--navy);
+    }
+
+    footer p {
+      max-width: 110ch;
+    }
+
+    @media (min-width: 900px) {
+      .deferred {
+        content-visibility: auto;
+        contain-intrinsic-size: auto 850px;
+      }
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid {
+        gap: 30px;
+      }
+
+      .gallery {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 25px 16px;
+      }
+
+      .reading-layout {
+        grid-template-columns: 190px 1fr;
+        gap: 30px;
+      }
+
+      .faq {
+        gap: 30px;
+      }
+
+      .category-grid a {
+        padding: 10px;
+      }
+
+      .category-grid span {
+        font-size: .76rem;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .wrap {
+        width: calc(100% - 32px);
+      }
+
+      .header-note {
+        display: none;
+      }
+
+      .masthead {
+        padding-block: 18px;
+      }
+
+      .directory-title {
+        display: block;
+      }
+
+      .directory-title p {
+        margin-top: 7px;
+      }
+
+      .category-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .category-grid span {
+        font-size: .82rem;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        padding-block: 35px;
+        gap: 30px;
+      }
+
+      h1 {
+        font-size: 3.2rem;
+        max-width: 15ch;
+      }
+
+      .hero-copy {
+        font-size: .95rem;
+      }
+
+      .hero-figure {
+        max-width: 460px;
+        width: 100%;
+        margin-inline: auto;
+      }
+
+      .hero-figure img {
+        aspect-ratio: 6 / 5;
+      }
+
+      .quick-answer {
+        grid-template-columns: 1fr;
+        gap: 12px;
+        padding-block: 25px;
+      }
+
+      .section {
+        padding-block: 38px;
+      }
+
+      .section-top {
+        display: block;
+      }
+
+      .section-top > p {
+        margin-top: 18px;
+      }
+
+      .gallery {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 24px 14px;
+      }
+
+      .gallery figure:last-child {
+        grid-column: 1 / -1;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+        align-items: center;
+      }
+
+      .reading-layout,
+      .faq {
+        grid-template-columns: 1fr;
+        gap: 29px;
+      }
+
+      .reading-aside h2 {
+        font-size: 1.8rem;
+      }
+
+      .articles h3 {
+        font-size: 1.5rem;
+      }
+
+      .finish-inner {
+        flex-direction: column;
+        align-items: start;
+        gap: 20px;
+      }
+
+      .footer-top {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .callout {
+        padding: 16px;
+      }
+
+      .articles article {
+        padding-block: 28px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+
+  <!--
+    Filnavn: index.html.
+    Tilføj først en selvrefererende canonical og og:url,
+    når sidens endelige publiceringsadresse er kendt.
+  -->
+
+  <!--
+    Søgeplan
+    Hovedemne: FansBuy spreadsheet.
+
+    Fem støtteemner:
+    FansBuy produktlinks;
+    FansBuy QC guide;
+    FansBuy størrelsesguide;
+    FansBuy fragt guide;
+    FansBuy finds.
+
+    25 længere søgefraser, behandlet i teksten:
+    FansBuy spreadsheet på dansk;
+    sådan bruger du produktlinks;
+    kontrollér gamle produktlinks;
+    sneakers med måleskema;
+    skostørrelse i centimeter;
+    sammenlign skoens form;
+    hoodie med brystmål;
+    T-shirt med korrekt længde;
+    jakke med plads til lag;
+    bukser med oplyst indersøm;
+    shorts med justerbar talje;
+    sæt med separate mål;
+    undertøj med tydelig materialesammensætning;
+    jersey med oplyst pasform;
+    kasket med justerbar lukning;
+    tørklæde med oplyste mål;
+    halskæde med justerbar længde;
+    kontrollér syninger på billeder;
+    QC-billeder før forsendelse;
+    farver i neutralt lys;
+    spørgsmål om smykkers materialer;
+    samlet budget før bestilling;
+    forskel på produktpris og fragt;
+    pakkens vægt og mål;
+    levering til Danmark.
+
+    Research:
+    10 relaterede domæner undersøgt.
+    Google-resultatsiden kunne ikke læses direkte.
+    Dette er derfor ikke dokumentation for Googles første ti placeringer.
+
+    fansbuy.net:
+    kategorier, links, mål og QC.
+
+    fansbuyspreadsheet.com:
+    begynderguide og arbejdsgang.
+
+    fansbuy.org:
+    produktfund og indkøbsforløb.
+
+    fansbuy.co.uk/catalog/:
+    produktkort og kategorier.
+
+    fansbuybuy.autos/faq:
+    direkte spørgsmål og svar.
+
+    spreadsheetsfansbuy.courses:
+    emneartikler om links og QC.
+
+    fansbuys.net:
+    søgning, linkkontrol og sammenligning.
+
+    spreadsheetfansbuy.rent/articles/fansbuy-spreadsheet:
+    sortering og noter.
+
+    fansspreadsheet.org:
+    størrelser, billedkontrol og fragtplanlægning.
+
+    fansbuylists.com:
+    kategorier, tøj og sneakers.
+
+    Ingen konkurrentpriser, rabatter, anmeldelser eller serviceløfter
+    er videreført.
+  -->
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebPage",
+        "@id": "#side",
+        "name": "FansBuy spreadsheet – find, mål og QC | HipoBuyFind",
+        "description": "En uafhængig dansk guide til produktlinks, pasform, billedkontrol og planlægning af dit køb.",
+        "inLanguage": "da",
+        "about": {
+          "@type": "Thing",
+          "name": "FansBuy spreadsheet"
+        },
+        "hasPart": [
+          {"@id": "#kategorier"},
+          {"@id": "#artikel-maal"},
+          {"@id": "#artikel-qc"},
+          {"@id": "#artikel-budget"},
+          {"@id": "#faq"}
+        ]
+      },
+      {
+        "@type": "ItemList",
+        "@id": "#kategorier",
+        "name": "Kategorier på HipoBuyFind",
+        "numberOfItems": 10,
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Sko",
+            "url": "https://hipobuyfind.com/category-911-Shoes.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Hættetrøjer og strik",
+            "url": "https://hipobuyfind.com/category-912-Hoodies%2FSweaters.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "T-shirts",
+            "url": "https://hipobuyfind.com/category-913-T-Shirts.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 4,
+            "name": "Jakker",
+            "url": "https://hipobuyfind.com/category-914-Jackets.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 5,
+            "name": "Bukser og shorts",
+            "url": "https://hipobuyfind.com/category-915-Pants%2FShorts.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 6,
+            "name": "Hovedbeklædning",
+            "url": "https://hipobuyfind.com/category-916-Headwear.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 7,
+            "name": "Sæt",
+            "url": "https://hipobuyfind.com/category-917-Sets.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 8,
+            "name": "Undertøj",
+            "url": "https://hipobuyfind.com/category-918-underwear%2Funderpants.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 9,
+            "name": "Sportstrøjer",
+            "url": "https://hipobuyfind.com/category-919-Jersey.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 10,
+            "name": "Tilbehør",
+            "url": "https://hipobuyfind.com/category-920-Accessories.html"
+          }
+        ]
+      },
+      {
+        "@type": "Article",
+        "@id": "#artikel-maal",
+        "headline": "FansBuy størrelsesguide: begynd med dit eget tøj",
+        "description": "Et måleskema er mest nyttigt, når du sammenligner det med noget, der allerede passer.",
+        "inLanguage": "da",
+        "isPartOf": {"@id": "#side"},
+        "articleSection": "Mål og pasform"
+      },
+      {
+        "@type": "Article",
+        "@id": "#artikel-qc",
+        "headline": "FansBuy QC guide: læs billederne som en tjekliste",
+        "description": "QC-billeder før forsendelse kan hjælpe med synlige detaljer. De kan ikke besvare alle spørgsmål om en vare.",
+        "inLanguage": "da",
+        "isPartOf": {"@id": "#side"},
+        "articleSection": "Billedkontrol"
+      },
+      {
+        "@type": "Article",
+        "@id": "#artikel-budget",
+        "headline": "FansBuy fragt guide: giv de ukendte udgifter en plads",
+        "description": "Et samlet budget før bestilling bør vise både kendte beløb og udgifter, du stadig mangler at få oplyst.",
+        "inLanguage": "da",
+        "isPartOf": {"@id": "#side"},
+        "articleSection": "Budget og levering"
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "#faq",
+        "inLanguage": "da",
+        "isPartOf": {"@id": "#side"},
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Hvad betyder FansBuy spreadsheet?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Udtrykket bruges om oversigter med produktfund, kategorier og links til videre undersøgelse. Formatet kan være et regneark eller et webkatalog. En oversigt er ikke i sig selv en garanti for varen eller sælgeren."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Hvordan bruger jeg FansBuy produktlinks?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Åbn den aktuelle produktside og kontrollér varen, varianten, størrelsen og sælgerens oplysninger. Gem den præcise kildeadresse og datoen for din kontrol. Hvis du bruger en indkøbsagent, skal du bekræfte, at agenten understøtter netop dette link."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Er billederne en garanti for ægthed?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Nej. Hverken inspirationsfotos eller QC-billeder dokumenterer alene ægthed, materialesammensætning eller holdbarhed. Bed om relevant dokumentation og kontrollér sælgerens oplysninger, før du køber."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Hvordan vælger jeg størrelse på sko og tøj?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Sammenlign den konkrete vares måleskema med dine fodmål eller mål på tøj, der allerede passer. Kontrollér målemetoden og enheden. En størrelse som M eller EU 42 er ikke tilstrækkelig som eneste sammenligningsgrundlag."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Hvad koster levering til Danmark?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Denne side angiver ingen faste fragtpriser. Bed om et aktuelt tilbud ud fra destination, pakkens vægt og mål samt indhold. Undersøg også gebyrer og eventuelle importomkostninger, før du godkender forsendelsen."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Er HipoBuyFind en officiel FansBuy-side?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Nej. Dette er en uafhængig informationsside med kategorilinks til HipoBuyFind. Siden påstår ingen officiel tilknytning til FansBuy, Nike, Louis Vuitton, Gucci, Hermès eller Dior. Billederne er visuelle referencer og viser ikke dokumenteret lager hos HipoBuyFind."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
+<link rel="canonical" href="https://kakobuyfinds.github.io/zlxyv/">
+</head>
+<body>
+  <header class="wrap masthead">
+    <a
+      class="brand"
+      href="https://www.hipobuyfind.com"
+      aria-label="HipoBuyFind – forsiden"
+    >hipobuy<b>find</b>.com</a>
+
+    <p class="header-note">Dansk læseguide · produktfund og købstjek</p>
+
+    <a class="header-link" href="https://www.hipobuyfind.com">
+      Åbn kataloget ↗
+    </a>
+  </header>
+
+  <nav class="directory" aria-labelledby="category-title">
+    <div class="wrap">
+      <div class="directory-title">
+        <h2 id="category-title">Vælg din kategori</h2>
+        <p>Direkte adgang til kategorier på HipoBuyFind</p>
+      </div>
+
+      <div class="category-grid">
+        <a href="https://hipobuyfind.com/category-911-Shoes.html">
+          <span lang="en">Shoes ↗</span>
+          <small>Sko og sneakers</small>
+        </a>
+
+        <a href="https://hipobuyfind.com/category-912-Hoodies%2FSweaters.html">
+          <span lang="en">Hoodies/Sweaters ↗</span>
+          <small>Hættetrøjer og strik</small>
+        </a>
+
+        <a href="https://hipobuyfind.com/category-913-T-Shirts.html">
+          <span lang="en">T-Shirts ↗</span>
+          <small>T-shirts og hverdagstoppe</small>
+        </a>
+
+        <a href="https://hipobuyfind.com/category-914-Jackets.html">
+          <span lang="en">Jackets ↗</span>
+          <small>Jakker og yderlag</small>
+        </a>
+
+        <a href="https://hipobuyfind.com/category-915-Pants%2FShorts.html">
+          <span lang="en">Pants/Shorts ↗</span>
+          <small>Bukser og shorts</small>
+        </a>
+
+        <a href="https://hipobuyfind.com/category-916-Headwear.html">
+          <span lang="en">Headwear ↗</span>
+          <small>Kasketter og hovedbeklædning</small>
+        </a>
+
+        <a href="https://hipobuyfind.com/category-917-Sets.html">
+          <span lang="en">Sets ↗</span>
+          <small>Matchende sæt</small>
+        </a>
+
+        <a href="https://hipobuyfind.com/category-918-underwear%2Funderpants.html">
+          <span lang="en">Underwear/underpants ↗</span>
+          <small>Undertøj og underbukser</small>
+        </a>
+
+        <a href="https://hipobuyfind.com/category-919-Jersey.html">
+          <span lang="en">Jersey ↗</span>
+          <small>Sportstrøjer</small>
+        </a>
+
+        <a href="https://hipobuyfind.com/category-920-Accessories.html">
+          <span lang="en">Accessories ↗</span>
+          <small>Smykker og andet tilbehør</small>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow">Find din retning. Tjek detaljerne.</p>
+
+          <h1 id="hero-title">
+            FansBuy spreadsheet
+            <span>Færre gæt.<br>Bedre overblik.</span>
+          </h1>
+
+          <p class="hero-copy">
+            Leder du efter en FansBuy spreadsheet på dansk? Begynd med
+            kategorien, og brug derefter mål, produktlinks og billeder
+            til at afgøre, hvad der er værd at undersøge nærmere.
+          </p>
+
+          <a class="button" href="https://www.hipobuyfind.com">
+            Udforsk produktkataloget ↗
+          </a>
+        </div>
+
+        <figure class="hero-figure">
+          <img
+            src="https://static.nike.com/a/images/t_web_pdp_535_v2/f_auto%2Cu_9ddf04c7-2a9a-4d76-add1-d15af8f0263d%2Cc_scale%2Cfl_relative%2Cw_1.0%2Ch_1.0%2Cfl_layer_apply/b7d9211c-26e7-431a-ac24-b0540fb3c00f/AIR%2BFORCE%2B1%2B%2707.png"
+            width="535"
+            height="669"
+            alt="Hvid Nike Air Force 1 ’07 med perforeret tåparti og hvid sål"
+            loading="eager"
+            fetchpriority="high"
+            decoding="async"
+          >
+          <figcaption>
+            <strong>Nike Air Force 1 ’07 · visuel reference</strong>
+            Se silhuetten først. Undersøg derefter den konkrete vares
+            mål og oplysninger.
+          </figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="wrap quick-answer" aria-labelledby="short-answer">
+      <h2 id="short-answer">
+        Hvad er en spreadsheet nyttig til?
+      </h2>
+
+      <p>
+        En produktoversigt hjælper dig med at samle fund og sammenligne
+        kategorier. Gem <strong>kildelink, valgt variant, mål og
+        kontrolpunkter</strong> sammen. Brug oversigten som arbejdsnoter;
+        kontrollér altid den aktuelle varebeskrivelse, før du træffer
+        en købsbeslutning.
+      </p>
+    </section>
+
+    <section
+      class="wrap section deferred"
+      aria-labelledby="reference-title"
+    >
+      <div class="section-top">
+        <div>
+          <p class="eyebrow">Et billede. Et konkret spørgsmål.</p>
+          <h2 id="reference-title">
+            Se stilen.<br>Undersøg det, du ikke kan se.
+          </h2>
+        </div>
+
+        <p>
+          Disse mærkereferencer viser forskellige typer beklædning og
+          tilbehør. Brug dem til at skærpe dine spørgsmål om den vare,
+          du selv overvejer.
+        </p>
+      </div>
+
+      <div class="gallery">
+        <figure>
+          <div class="image-box">
+            <img
+              src="https://static.nike.com/a/images/t_web_pdp_535_v2/f_auto/cf890753-0608-4810-8ea6-87185035d2fe/AS%2BM%2BNSW%2BCLUB%2BHOODIE%2BPO%2BBB.png"
+              width="535"
+              height="669"
+              alt="Sort Nike Sportswear Club Fleece-hættetrøje med hvidt brystlogo"
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
+          <figcaption>
+            <strong>Nike · hættetrøje</strong>
+            En hoodie med brystmål er lettere at sammenligne med din
+            egen. Spørg også efter ærmelængde.
+          </figcaption>
+        </figure>
+
+        <figure>
+          <div class="image-box">
+            <img
+              src="https://jp.louisvuitton.com/images/is/image/lv/1/PP_VP_L/louis-vuitton-denim-trucker-jacket--HSA18WPNB650_PM1_Back%20view.jpg?wid=420&amp;hei=525"
+              width="420"
+              height="525"
+              alt="Louis Vuitton-denimjakke set bagfra med lyse monogramdetaljer over ryggen"
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
+          <figcaption>
+            <strong>Louis Vuitton · denim</strong>
+            En jakke med plads til lag kræver både skuldermål og
+            brystvidde. Billedet fortæller ikke, hvor meget stoffet
+            giver sig.
+          </figcaption>
+        </figure>
+
+        <figure>
+          <div class="image-box">
+            <img
+              src="https://media.gucci.com/style/DarkGray_Center_0_0_490x490/1730917900/817450_4HBDP_9077_003_100_0000_Light-casquette-en-toile-de-coton.jpg"
+              width="490"
+              height="490"
+              alt="Model i profil med hvid Gucci-kasket og hvid jakke"
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
+          <figcaption>
+            <strong>Gucci · hovedbeklædning</strong>
+            En kasket med justerbar lukning har stadig et
+            pasformsområde. Kontrollér omkreds og lukningens
+            udformning.
+          </figcaption>
+        </figure>
+
+        <figure>
+          <div class="image-box">
+            <img
+              src="https://assets.hermes.com/is/image/hermesproduct/carre-90-la-ligne-coup-de-fouet--004183S%2001-flat-wm-3-0-0-800-800_g.jpg?wid=420&amp;hei=420"
+              width="420"
+              height="420"
+              alt="Lyseblåt Hermès La Ligne Coup de Fouet-tørklæde med dekorative linjer og kantmønster"
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
+          <figcaption>
+            <strong>Hermès · tørklæde</strong>
+            Et tørklæde med oplyste mål gør styling lettere at
+            planlægge. Sammenhold størrelsen med den knude, du vil bruge.
+          </figcaption>
+        </figure>
+
+        <figure>
+          <div class="image-box">
+            <img
+              src="https://assets.christiandior.com/is/image/diorprod/N1390PTCRSD301_SBG_E01-3?crop=0%2C0%2C4000%2C5000&amp;hei=600&amp;qlt=75&amp;wid=480"
+              width="480"
+              height="600"
+              alt="Dior Petit CD-halskæde i guldfarvet metal med CD-detalje og hvid resinperle"
+              loading="lazy"
+              decoding="async"
+            >
+          </div>
+          <figcaption>
+            <strong>Dior · smykke</strong>
+            En halskæde med justerbar længde bør beskrive både kæde og
+            lås. Stil spørgsmål om smykkers materialer før køb.
+          </figcaption>
+        </figure>
+      </div>
+
+      <p class="image-note">
+        Billederne er inspirationsreferencer fra mærkernes
+        billedservere. De dokumenterer hverken lager, priser, ægthed
+        af andre varer eller et samarbejde mellem mærkerne og
+        HipoBuyFind.
+      </p>
+    </section>
+
+    <section
+      class="reading section deferred"
+      aria-labelledby="notes-title"
+    >
+      <div class="wrap reading-layout">
+        <aside class="reading-aside">
+          <p class="eyebrow">Tre emner at læse før køb</p>
+
+          <h2 id="notes-title">Fra fund<br>til beslutning.</h2>
+
+          <p>
+            FansBuy finds er begyndelsen på en undersøgelse. De
+            følgende noter hjælper dig med at sammenligne pasform,
+            læse billeder og holde styr på budgettet.
+          </p>
+
+          <p>
+            Gem en kort begrundelse for hvert fund. Så kan du senere
+            se, hvorfor varen var interessant, og hvad du stadig
+            mangler at få bekræftet.
+          </p>
+        </aside>
+
+        <div class="articles">
+          <article id="artikel-maal" aria-labelledby="fit-title">
+            <p class="article-label">01 / Mål og pasform</p>
+
+            <h3 id="fit-title">
+              FansBuy størrelsesguide: begynd med dit eget tøj
+            </h3>
+
+            <p class="standfirst">
+              Et måleskema er mest nyttigt, når du sammenligner det
+              med noget, der allerede passer.
+            </p>
+
+            <p>
+              Læg en trøje fladt, og notér brystvidde, længde og
+              ærme. Se efter, om sælgeren måler fra armhule til
+              armhule eller angiver hele omkredsen. Bland ikke de
+              to metoder. Når du vurderer en T-shirt med korrekt
+              længde, skal du også tage højde for, hvor
+              skuldersømmen er placeret.
+            </p>
+
+            <p>
+              For sneakers med måleskema skal du først finde ud af,
+              hvad centimeterangivelsen beskriver. Skostørrelse i
+              centimeter kan referere til anbefalet fodlængde eller
+              et mål inde i skoen. Spørg, hvis det er uklart.
+              Sammenlign skoens form, især tåboks og bredde, men brug
+              ikke et billede som erstatning for mål.
+            </p>
+
+            <ul>
+              <li>
+                <strong>Underdel:</strong>
+                Vælg bukser med oplyst indersøm. Ved shorts med
+                justerbar talje bør du kende både afslappet mål
+                og justeringsmulighed.
+              </li>
+              <li>
+                <strong>Matchende dele:</strong>
+                Søg efter sæt med separate mål til overdel og
+                underdel; én fælles størrelsesbetegnelse siger
+                for lidt.
+              </li>
+              <li>
+                <strong>Tæt pasform:</strong>
+                Se efter undertøj med tydelig materialesammensætning
+                og en jersey med oplyst pasform, så du kan vurdere
+                stræk og bevægelsesrum.
+              </li>
+            </ul>
+
+            <div class="callout">
+              <strong>Din sammenligningsnote</strong>
+              Skriv målemetode, centimeter, ønsket pasform og det
+              punkt, du mangler svar på. Et tomt felt er et
+              spørgsmål, der skal afklares.
+            </div>
+          </article>
+
+          <article id="artikel-qc" aria-labelledby="qc-title">
+            <p class="article-label">02 / Billedkontrol</p>
+
+            <h3 id="qc-title">
+              FansBuy QC guide: læs billederne som en tjekliste
+            </h3>
+
+            <p class="standfirst">
+              QC-billeder før forsendelse kan hjælpe med synlige
+              detaljer. De kan ikke besvare alle spørgsmål om en vare.
+            </p>
+
+            <p>
+              Start med helheden: Er det den aftalte farve, variant
+              og størrelse? Fortsæt derefter med detaljer.
+              Kontrollér syninger på billeder, se efter skæve
+              samlinger, og bed om et nærbillede, hvis et område
+              er skjult. På sko kan du sammenligne højre og
+              venstre sko fra samme vinkel. På beklædning er
+              krave, manchetter og eventuelle lukninger oplagte
+              steder at undersøge.
+            </p>
+
+            <p>
+              Bed om farver i neutralt lys, hvis belysningen gør
+              sammenligningen vanskelig. Ved smykker og tilbehør
+              er lås, bagside og kontaktpunkter relevante. En blank
+              overflade dokumenterer ikke metallets sammensætning;
+              sådanne oplysninger kræver en varebeskrivelse eller
+              anden relevant dokumentation.
+            </p>
+
+            <p>
+              Gem din vurdering sammen med billeddatoen. Skriv
+              præcist, hvad du har set, og hvad der fortsat er
+              usikkert. Undgå at gøre en visuel vurdering til et
+              løfte om ægthed, komfort eller levetid.
+            </p>
+
+            <div class="callout">
+              <strong>Sådan bruger du produktlinks</strong>
+              Gem det præcise link til den valgte variant.
+              Kontrollér gamle produktlinks igen: Et link kan
+              være ændret, og en tidligere tilgængelig størrelse
+              kan være væk.
+            </div>
+          </article>
+
+          <article id="artikel-budget" aria-labelledby="budget-title">
+            <p class="article-label">03 / Budget og levering</p>
+
+            <h3 id="budget-title">
+              FansBuy fragt guide: giv de ukendte udgifter en plads
+            </h3>
+
+            <p class="standfirst">
+              Et samlet budget før bestilling bør vise både kendte
+              beløb og udgifter, du stadig mangler at få oplyst.
+            </p>
+
+            <p>
+              Der er forskel på produktpris og fragt. Notér varens
+              pris i den oprindelige valuta, eventuel lokal
+              levering, oplyste servicegebyrer og det grundlag,
+              der bruges til valutaomregning. Hold international
+              fragt adskilt, indtil du har et aktuelt tilbud.
+              Vi angiver ingen faste priser eller besparelser
+              på denne side.
+            </p>
+
+            <p>
+              Pakkens vægt og mål kan påvirke fragtberegningen.
+              Bed derfor om at få oplyst beregningsgrundlaget,
+              før du sammenligner muligheder. Undersøg også
+              sporing, emballage og de aktuelle vilkår for
+              indholdet. Antag ikke, at en mulighed passer til
+              alle varetyper eller destinationer.
+            </p>
+
+            <p>
+              Ved levering til Danmark bør du kontrollere de
+              gældende importoplysninger og fragtudbyderens
+              vilkår. Hvis en udgift er ukendt, så markér den
+              som ukendt frem for at skrive nul. Bekræft også
+              betingelserne for ændring, annullering og
+              returnering, inden du betaler.
+            </p>
+
+            <div class="callout">
+              <strong>En budgetskitse uden opdigtede beløb</strong>
+              <span class="cost-line">
+                Vare + lokal levering + oplyste gebyrer +
+                international fragt + eventuelle importomkostninger.
+              </span>
+              <br>
+              Afklar, hvad hvert tilbud inkluderer, så en udgift
+              ikke tælles to gange.
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="wrap section deferred"
+      aria-labelledby="comparison-title"
+    >
+      <div class="section-top">
+        <div>
+          <p class="eyebrow">Gør dine noter sammenlignelige</p>
+          <h2 id="comparison-title">
+            Det, et godt produktlink bør føre til.
+          </h2>
+        </div>
+
+        <p>
+          Hold dine FansBuy produktlinks sammen med konkrete
+          kontrolpunkter. Et tydeligt spørgsmål er mere nyttigt
+          end en lang liste uden noter.
+        </p>
+      </div>
+
+      <div class="matrix">
+        <table>
+          <caption>Din kontrol før en købsbeslutning</caption>
+          <thead>
+            <tr>
+              <th scope="col">Område</th>
+              <th scope="col">Se efter</th>
+              <th scope="col">Afklar, hvis det mangler</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Kildelink</th>
+              <td>Den aktuelle vare og den valgte variant</td>
+              <td>Er linket stadig knyttet til samme produkt?</td>
+            </tr>
+            <tr>
+              <th scope="row">Mål</th>
+              <td>Enhed, målemetode og relevante dimensioner</td>
+              <td>Er brystmålet flad bredde eller omkreds?</td>
+            </tr>
+            <tr>
+              <th scope="row">Billeder</th>
+              <td>Helhed, detaljer og synlig variant</td>
+              <td>Kan jeg få et nærbillede eller en måling?</td>
+            </tr>
+            <tr>
+              <th scope="row">Materialer</th>
+              <td>Beskrivelse af stof, metal og eventuel belægning</td>
+              <td>Hvilken dokumentation findes der?</td>
+            </tr>
+            <tr>
+              <th scope="row">Levering</th>
+              <td>Aktuelt tilbud, beregningsgrundlag og vilkår</td>
+              <td>Hvilke udgifter er endnu ikke inkluderet?</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section
+      class="wrap section faq deferred"
+      aria-labelledby="faq-title"
+    >
+      <div class="faq-intro">
+        <p class="eyebrow">Spørgsmål med korte svar</p>
+        <h2 id="faq-title">Godt at vide,<br>før du går videre.</h2>
+        <p>
+          En kort FAQ om oversigter, links og de oplysninger,
+          du bør kontrollere selv.
+        </p>
+      </div>
+
+      <div>
+        <details open>
+          <summary>Hvad betyder FansBuy spreadsheet?</summary>
+          <p>Udtrykket bruges om oversigter med produktfund, kategorier og links til videre undersøgelse. Formatet kan være et regneark eller et webkatalog. En oversigt er ikke i sig selv en garanti for varen eller sælgeren.</p>
+        </details>
+
+        <details>
+          <summary>Hvordan bruger jeg FansBuy produktlinks?</summary>
+          <p>Åbn den aktuelle produktside og kontrollér varen, varianten, størrelsen og sælgerens oplysninger. Gem den præcise kildeadresse og datoen for din kontrol. Hvis du bruger en indkøbsagent, skal du bekræfte, at agenten understøtter netop dette link.</p>
+        </details>
+
+        <details>
+          <summary>Er billederne en garanti for ægthed?</summary>
+          <p>Nej. Hverken inspirationsfotos eller QC-billeder dokumenterer alene ægthed, materialesammensætning eller holdbarhed. Bed om relevant dokumentation og kontrollér sælgerens oplysninger, før du køber.</p>
+        </details>
+
+        <details>
+          <summary>Hvordan vælger jeg størrelse på sko og tøj?</summary>
+          <p>Sammenlign den konkrete vares måleskema med dine fodmål eller mål på tøj, der allerede passer. Kontrollér målemetoden og enheden. En størrelse som M eller EU 42 er ikke tilstrækkelig som eneste sammenligningsgrundlag.</p>
+        </details>
+
+        <details>
+          <summary>Hvad koster levering til Danmark?</summary>
+          <p>Denne side angiver ingen faste fragtpriser. Bed om et aktuelt tilbud ud fra destination, pakkens vægt og mål samt indhold. Undersøg også gebyrer og eventuelle importomkostninger, før du godkender forsendelsen.</p>
+        </details>
+
+        <details>
+          <summary>Er HipoBuyFind en officiel FansBuy-side?</summary>
+          <p>Nej. Dette er en uafhængig informationsside med kategorilinks til HipoBuyFind. Siden påstår ingen officiel tilknytning til FansBuy, Nike, Louis Vuitton, Gucci, Hermès eller Dior. Billederne er visuelle referencer og viser ikke dokumenteret lager hos HipoBuyFind.</p>
+        </details>
+      </div>
+    </section>
+
+    <section class="finish" aria-labelledby="finish-title">
+      <div class="wrap finish-inner">
+        <div>
+          <h2 id="finish-title">
+            Tag dine kontrolpunkter med videre.
+          </h2>
+          <p>
+            Find en kategori, undersøg den konkrete vare, og gem
+            de spørgsmål, du mangler svar på.
+          </p>
+        </div>
+
+        <a class="button" href="https://www.hipobuyfind.com">
+          Se mere på HipoBuyFind ↗
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    <div class="footer-top">
+      <a href="https://www.hipobuyfind.com">
+        www.hipobuyfind.com
+      </a>
+      <span>Uafhængig dansk guide · FansBuy spreadsheet</span>
+    </div>
+
+    <p>
+      Mærkenavne bruges til at identificere de viste visuelle
+      referencer. Denne side afgiver ingen løfter om pris, lager,
+      leveringstid eller officiel tilknytning. Kategorierne åbner
+      HipoBuyFind; de øvrige navigationslinks går til HipoBuyFinds
+      forside.
+    </p>
+  </footer>
+</body>
+</html>
